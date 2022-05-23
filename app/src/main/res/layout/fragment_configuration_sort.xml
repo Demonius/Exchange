@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/title_sort"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_sort"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/mini_margin">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_sort_configuration"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mini_margin"
+            android:text="@string/text_sart_alphabet"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioAlphabetIncrise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mini_margin"
+            android:text="@string/text_decrise" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioAlphabetDecrise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mini_margin"
+            android:text="@string/text_incrise" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mini_margin"
+            android:text="@string/text_sart_value"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioValueIncrise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mini_margin"
+            android:text="@string/text_decrise" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioValueDecrise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mini_margin"
+            android:text="@string/text_incrise" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

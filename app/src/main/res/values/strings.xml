@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Exchange</string>
+    <string name="text_enter_currency">Введите или выберите из списка валюту</string>
+    <string name="title_popular">Популярное</string>
+    <string name="title_favorite">Избранное</string>
+    <string name="title_sort">Сортировка</string>
+    <string name="text_sort_configuration">Варианты сортировки:</string>
+    <string name="text_sart_alphabet">1) по Алфавиту</string>
+    <string name="text_sart_value">2) по Значению</string>
+    <string name="text_decrise">по возпвстанию</string>
+    <string name="text_incrise">по убыванию</string>
+    <string name="error_currency_input">Такой валюты не существует</string>
+</resources>

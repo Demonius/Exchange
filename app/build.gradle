@@ -1,0 +1,86 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
+    id 'kotlin-parcelize'
+}
+
+def versionPropertiesFile = rootProject.file("version.properties")
+def versionProperties = new Properties()
+versionProperties.load(new FileInputStream(versionPropertiesFile))
+
+android {
+    def versionMajor = versionProperties['VERSION_MAJOR'].toInteger()
+    def versionMinor = versionProperties['VERSION_MINOR'].toInteger()
+    def versionPatch = versionProperties['VERSION_PATCH'].toInteger()
+    def versionBuild = versionProperties['VERSION_BUILD'].toInteger()
+
+    compileSdk rootProject.ext.compileSdk
+
+    defaultConfig {
+        applicationId "by.dmitry.exchange"
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+
+        versionCode versionMajor * 100000 + versionMinor * 10000 + versionPatch + versionBuild + 100
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    kapt {
+        useBuildCache = true
+        correctErrorTypes = true
+        mapDiagnosticLocations = true
+        javacOptions {
+            option("-Xmaxerrs", 500)
+            option("-source", "8")
+            option("-target", "8")
+        }
+
+        arguments {
+            arg("room.incremental", true)
+            arg("dagger.formatGeneratedSource", "disabled")
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+    implementation "androidx.multidex:multidex:${androidXMultidexVersion}"
+    implementation "androidx.core:core-ktx:$ktxVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+
+    implementation "com.google.dagger:dagger:${daggerLibVersion}"
+    implementation "com.google.dagger:dagger-android-support:${daggerLibVersion}"
+    kapt "com.google.dagger:dagger-compiler:${daggerLibVersion}"
+    kapt "com.google.dagger:dagger-android-processor:${daggerLibVersion}"
+
+    implementation "androidx.room:room-runtime:${androidXRoomVersion}"
+    kapt "androidx.room:room-compiler:${androidXRoomVersion}"
+    implementation "net.zetetic:android-database-sqlcipher:${sqlCipherLibVersion}"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleLib"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleLib"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleLib"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+}

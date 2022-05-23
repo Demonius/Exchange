@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
+}
+
+android {
+    compileSdk rootProject.ext.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':domain')
+
+    implementation "androidx.core:core-ktx:${ktxVersion}"
+
+    api "com.squareup.retrofit2:retrofit:${retrofitLibVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofitLibVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitGsonConverterLibVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${okHttpLogLibVersion}"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:${okHttpLogLibVersion}"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    implementation "androidx.room:room-ktx:${androidXRoomVersion}"
+    implementation "androidx.room:room-runtime:${androidXRoomVersion}"
+    kapt "androidx.room:room-compiler:${androidXRoomVersion}"
+
+    implementation "com.google.dagger:dagger:${daggerLibVersion}"
+    kapt "com.google.dagger:dagger-compiler:${daggerLibVersion}"
+}
